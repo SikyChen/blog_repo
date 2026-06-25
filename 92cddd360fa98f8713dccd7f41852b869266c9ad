@@ -1,0 +1,42 @@
+md/新版BLOG小站来了.md
+  85e5d03d63fe0f3b 1-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.3",
+  "base_commit_sha": "92cddd360fa98f8713dccd7f41852b869266c9ad",
+  "prompts": {
+    "85e5d03d63fe0f3b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe46d731-2877-4758-9090-5e25a8f7c3f5",
+        "model": "glm-5.2"
+      },
+      "human_author": "chensiqi <chensiqi@cvte.com>",
+      "messages": [],
+      "total_additions": 126,
+      "total_deletions": 10,
+      "accepted_lines": 117,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/c931b6d52864aad7577c947049eaf9e22d53dd2932e181a77ae4dd6fc549ea19"
+    },
+    "fbd0a7434a0e56c7": {
+      "agent_id": {
+        "tool": "known_human",
+        "id": "known_human_session",
+        "model": "unknown"
+      },
+      "human_author": "chensiqi <chensiqi@cvte.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_16722c6091d978": {
+      "author": "chensiqi"
+    }
+  }
+}
