@@ -3,9 +3,8 @@ title: 在LeetCode刷题的同时，居然还可以点亮GitHub的小绿点
 author: Siky
 description: "道理其实很简单，只要每次把LeetCode上面的解题过程，复制到本地，然后再提交到GitHub就可以了。\U0001F60F"
 crtime: 2022-03-07T15:49:58.000Z
-uptime: 1675942559664
+uptime: 1782359194087
 tags: 'JavaScript,Node'
-id: '7'
 ---
 
 道理其实很简单，只要每次把LeetCode上面的解题过程，复制到本地，然后再提交到GitHub就可以了。😏

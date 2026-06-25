@@ -1,0 +1,5 @@
+#!/bin/sh
+# pre-commit：提交前同步 md 时间戳与 list.json
+cd "$(git rev-parse --show-toplevel)"
+node scripts/sync.mjs
+git add md list.json

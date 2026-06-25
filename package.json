@@ -1,0 +1,9 @@
+{
+  "name": "blog-content",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync.mjs",
+    "setup": "git config core.hooksPath .githooks"
+  }
+}
