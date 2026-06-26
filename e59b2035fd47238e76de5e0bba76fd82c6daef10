@@ -1,0 +1,28 @@
+md/新版BLOG小站来了.md
+  h_16722c6091d978 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.3",
+  "base_commit_sha": "e59b2035fd47238e76de5e0bba76fd82c6daef10",
+  "prompts": {
+    "fbd0a7434a0e56c7": {
+      "agent_id": {
+        "tool": "known_human",
+        "id": "known_human_session",
+        "model": "unknown"
+      },
+      "human_author": "chensiqi <chensiqi@cvte.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_16722c6091d978": {
+      "author": "chensiqi"
+    }
+  }
+}
