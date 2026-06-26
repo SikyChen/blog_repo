@@ -3,7 +3,7 @@ title: 一起来实现一个简单的 React Router 吧~
 author: Siky
 description: 本质上，前端路由所提供的，就是一个 修改 URL 及 渲染与 URL 对应组件 的功能集合。那要怎么实现它呢？
 crtime: 2023-02-07T20:54:13.000Z
-uptime: 1782436229955
+uptime: 1782436605495
 tags: 'JavaScript,React,Router'
 ---
 

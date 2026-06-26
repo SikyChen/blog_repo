@@ -4,7 +4,7 @@ author: Siky
 description: >-
   换域名、换框架、换部署方式,我的个人小站又重写了一遍,这是第五次。从前几版的模糊记忆,到第四版那套 React+Node+腾讯云的自造机器,再到这一版用 Astro + Cloudflare Pages 重新搭起来、和 Claude Code 一起干完的过程。
 crtime: 2026-06-25T14:00:00.000Z
-uptime: 1782436229955
+uptime: 1782436605495
 tags: 'Astro,随笔'
 ---
 
@@ -69,6 +69,53 @@ tags: 'Astro,随笔'
 写文章的流程变成了最朴素的那个:在 blog_repo 里新建一个 md 文件,写,提交,推送。Cloudflare 检测到推送,重新构建,几分钟之后新文章就上线了。没有中间商,没有等待重启,没有"等哪天顺路再发布"。
 
 把第四版那套 Node 服务整个删掉的时候,我有一种说不出的轻松。不是因为它写得不好,而是因为我终于承认:对一个个人博客来说,那套东西是多余的。
+
+## 它是怎么自动发出去的
+
+写完一篇文章,我要做的只有一件事:在 blog_repo 里写 md,提交,推送。剩下的一串事,是两个 GitHub Action 和 Cloudflare 接力做完的。画出来大概是这个样子:
+
+```
+   blog_repo 里写 / 改 md
+            │
+            │  git push (main)
+            ▼
+ ┌──────────────────────────────────────┐
+ │ ① blog_repo 的 GitHub Action          │
+ │   trigger-blog-v5.yml                 │
+ │   on: push(main)                      │
+ │     → 用 PAT 调 blog-v5 的             │
+ │       repository_dispatch             │
+ │       event_type: content_updated     │
+ └──────────────────────────────────────┘
+            │
+            │  dispatch 信号
+            ▼
+ ┌──────────────────────────────────────┐
+ │ ② blog-v5 的 GitHub Action            │
+ │   update-content.yml                  │
+ │   on: repository_dispatch             │
+ │     → checkout(含 submodule)          │
+ │     → git submodule update --remote   │
+ │     → commit 新指针                    │
+ │     → push 到 blog-v5 的 main          │
+ └──────────────────────────────────────┘
+            │
+            │  push (main)
+            ▼
+ ┌──────────────────────────────────────┐
+ │ ③ Cloudflare Pages                    │
+ │   Git 集成连接 blog-v5                 │
+ │     → pnpm run build → dist           │
+ │     → 自动部署上线                     │
+ └──────────────────────────────────────┘
+            │
+            ▼
+      新文章上线 🎉
+```
+
+中间这一段,是后来补上的自动化。blog_repo 一旦有 push,它自己的 Action 会去"敲一下" blog-v5 的门;blog-v5 收到信号,就把 submodule 指针往前挪一格,指向 blog_repo 最新的提交,再把自己 push 上去;这一 push,Cloudflare 就开始构建部署。全程不用我登任何一台机器,也不用我手动去 blog-v5 里改指针。需要的前置准备,就是一个有 repo 权限的 Personal Access Token,分别存进两个仓库的 Secrets 里,让两边能互相认证。
+
+说到底,这套东西替我做的,就是把第四版里那个"等哪天顺路重启服务再发布"的环节,彻底拆掉了。
 
 ## 让它长得像我自己
 
