@@ -1,0 +1,52 @@
+md/今天天气不错，来看看图床怎么弄吧.md
+  h_16722c6091d978 14,21-23
+md/在LeetCode刷题的同时，居然还可以点亮GitHub的小绿点.md
+  h_16722c6091d978 18
+"md/当输入 npm run 后发生了什么.md"
+  h_16722c6091d978 46,50,63,65
+md/测试图片~.md
+  h_16722c6091d978 10,12,16,21
+scripts/sync.mjs
+  7eb648b3d5ed0dc5 10-12,15,155-173,178-181,204-207
+"md/一起来实现一个简单的 React Router 吧~.md"
+  h_16722c6091d978 10,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.3",
+  "base_commit_sha": "b80aa140006c272ee6cdbab2ad8ee727c94a2622",
+  "prompts": {
+    "7eb648b3d5ed0dc5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "34a5a144-3919-4978-9253-ba940ee80372",
+        "model": "glm-5.2"
+      },
+      "human_author": "chensiqi <chensiqi@cvte.com>",
+      "messages": [],
+      "total_additions": 32,
+      "total_deletions": 1,
+      "accepted_lines": 32,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/2befd23046d1f25c147808f3f26c1d925ded3cc493a41a5b851d8f1b4bc6f3d6"
+    },
+    "fbd0a7434a0e56c7": {
+      "agent_id": {
+        "tool": "known_human",
+        "id": "known_human_session",
+        "model": "unknown"
+      },
+      "human_author": "chensiqi <chensiqi@cvte.com>",
+      "messages": [],
+      "total_additions": 16,
+      "total_deletions": 13,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_16722c6091d978": {
+      "author": "chensiqi"
+    }
+  }
+}
