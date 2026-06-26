@@ -5,7 +5,7 @@ description: >-
   当我们自己写了一个通用的 JavaScript 模块，想要分享出去给别人使用，一般都会把它作为 npm 包发布到官方仓库中，需要使用的时候再通过 `npm
   install xxx` 来安装即可。那么如何发布一个 npm 包呢？
 crtime: 2021-06-20T12:15:12.000Z
-uptime: 1782359194087
+uptime: 1782436229955
 tags: 'Node,NPM'
 ---
 

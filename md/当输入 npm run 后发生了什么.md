@@ -5,7 +5,7 @@ description: >-
   在前端开发的工作当中，使用 `npm run dev` 的命令启动本地开发环境，是再正常不过的事了。那么当输入完类似 `npm run xxx`
   的命令后，发生了什么呢？
 crtime: 2021-06-09T17:28:36.000Z
-uptime: 1782359194087
+uptime: 1782436229955
 tags: 'Node,NPM'
 ---
 

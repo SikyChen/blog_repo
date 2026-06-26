@@ -4,7 +4,7 @@ author: Siky
 description: >-
   换域名、换框架、换部署方式,我的个人小站又重写了一遍,这是第五次。从前几版的模糊记忆,到第四版那套 React+Node+腾讯云的自造机器,再到这一版用 Astro + Cloudflare Pages 重新搭起来、和 Claude Code 一起干完的过程。
 crtime: 2026-06-25T14:00:00.000Z
-uptime: 1782614394000
+uptime: 1782436229955
 tags: 'Astro,随笔'
 ---
 

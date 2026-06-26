@@ -1,0 +1,32 @@
+name: Trigger blog-v5 rebuild
+
+# 当 blog_repo 内容更新后,通知 blog-v5 仓库拉取最新 submodule 并重新部署。
+# 通过 repository_dispatch 触发 blog-v5 的 update-content workflow。
+on:
+  push:
+    branches: [main]
+  # 也允许手动触发
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger blog-v5 repository_dispatch
+        env:
+          GH_TOKEN: ${{ secrets.BLOG_V5_PAT }}
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            https://api.github.com/repos/SikyChen/blog-v5/dispatches \
+            -d '{"event_type":"content_updated"}')
+          CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "HTTP $CODE"
+          echo "$BODY"
+          if [ "$CODE" != "204" ]; then
+            echo "::error::Failed to trigger blog-v5 (expected 204)"
+            exit 1
+          fi
+          echo "Successfully triggered blog-v5 rebuild."
