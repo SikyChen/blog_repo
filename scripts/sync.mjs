@@ -7,8 +7,12 @@
 //
 // 设计原则：不重新序列化整个 frontmatter，仅定向修改 crtime/uptime/id 行，
 // 其余字段（含 description 多行块、emoji 转义）原样保留，避免无意义 diff。
+//
+// uptime 更新策略：只有该 md 相对上次提交有改动时才刷新为 now，否则保留原值。
+// 是否改动通过 git 判定（sync 跑在 pre-commit、md 全在 git 下）。
 
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
@@ -148,9 +152,33 @@ function readOldList() {
   catch { return []; }
 }
 
+// 获取相对上次提交有改动的 md 文件名集合（含未跟踪新文件）。
+// 用 git 判定"是否修改"最准确且零额外状态；返回 null 表示非 git 环境，调用方回退为"全部已修改"。
+function getModifiedMdSet() {
+  try {
+    const opts = { cwd: ROOT, encoding: 'utf8' };
+    const tracked = execSync('git diff HEAD --name-only -z -- md/', opts);
+    const untracked = execSync('git ls-files --others --exclude-standard -z -- md/', opts);
+    const set = new Set();
+    for (const blob of [tracked, untracked]) {
+      for (const p of blob.split('\0')) {
+        if (p.startsWith('md/') && p.endsWith('.md')) set.add(p.slice(3));
+      }
+    }
+    return set;
+  } catch {
+    return null;
+  }
+}
+
 // ---------- 主流程 ----------
 
 const files = readdirSync(MD_DIR).filter(f => f.endsWith('.md')).sort();
+
+const modifiedSet = getModifiedMdSet();
+if (modifiedSet === null) console.warn('⚠ 未运行在 git 仓库中，将更新所有 md 的 uptime');
+// 非 git 环境回退为"全部已修改"，避免新环境/新 clone 卡住
+const isModified = (fileName) => modifiedSet === null || modifiedSet.has(fileName);
 
 const pvMap = new Map();
 for (const item of readOldList()) if (item && item.fileName) pvMap.set(item.fileName, item.pv ?? 0);
@@ -173,7 +201,10 @@ for (const fileName of files) {
   const uptimeEntry = entries.find(e => e.key === 'uptime');
   // uptime 沿用原格式：原是数字毫秒就写数字，原是 ISO 就写 ISO，缺失则数字毫秒
   const useIso = uptimeEntry && !isNumberLiteral(uptimeEntry.value);
-  const newUptime = useIso ? new Date(now).toISOString() : String(now);
+  // 仅当该 md 有改动时才更新 uptime；否则保留原值原样，避免无意义刷新
+  const newUptime = isModified(fileName)
+    ? (useIso ? new Date(now).toISOString() : String(now))
+    : (uptimeEntry ? uptimeEntry.value : String(now));
   const crtimeForList = hasCrtime ? get('crtime') : String(now);
 
   // 回写 md（仅当有变化）

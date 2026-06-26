@@ -3,11 +3,11 @@ title: 一起来实现一个简单的 React Router 吧~
 author: Siky
 description: 本质上，前端路由所提供的，就是一个 修改 URL 及 渲染与 URL 对应组件 的功能集合。那要怎么实现它呢？
 crtime: 2023-02-07T20:54:13.000Z
-uptime: 1782436605495
+uptime: 1782445084650
 tags: 'JavaScript,React,Router'
 ---
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4b71a642c618409aa3468ce608eba4d9~tplv-k3u1fbpfcp-watermark.image?)
+![image.png](./../assets/simple-react-router.png)
 
 本质上，前端路由所提供的，就是一个 `修改 URL` 及 `渲染与 URL 对应组件` 的功能集合。
 
@@ -32,7 +32,7 @@ tags: 'JavaScript,React,Router'
 
 下面是这个过程的一个流程图
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e6cb0ee4d5844cfa6bdbfe7dda682a0~tplv-k3u1fbpfcp-watermark.image?)
+![image.png](./../assets/simple-react-router-1.png)
 
 下面将通过 `history` API 来实现一个基础的 `History模式` 的 `Router` 功能，并支持如下路由配置：
 

@@ -5,7 +5,7 @@ description: >-
   在前端开发的工作当中，使用 `npm run dev` 的命令启动本地开发环境，是再正常不过的事了。那么当输入完类似 `npm run xxx`
   的命令后，发生了什么呢？
 crtime: 2021-06-09T17:28:36.000Z
-uptime: 1782436605495
+uptime: 1782445084650
 tags: 'Node,NPM'
 ---
 
@@ -43,11 +43,11 @@ node ./src/index.js
 
 这时我们不妨看一下，使用 `create-react-app` 搭建的项目（使用 `vue-cli` 搭建的项目也一样），在 `npm install` 后，其 `node_modules` 目录下面的样子：
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/df39f0d52322443bbe6134eb649cf05f~tplv-k3u1fbpfcp-watermark.image)
+![image.png](./../assets/npm_run_1.jpg)
 
 如图可以看到有一个 `.bin` 目录，这个目录不是任何一个 `npm` 包。目录下的文件，右面都有一个小箭头（VS Code 上这样显示），表示这是一个软链接，打开文件可以看到文件顶部写着 `#!/user/bin/env node` ，表示这是一个通过使用 Node 执行的脚本。
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77489403490c4d31a0888949e0f1e184~tplv-k3u1fbpfcp-watermark.image)
+![image.png](./../assets/npm_run_2.jpg)
 
 由此我们可以知道，当使用 `npm run build` 执行 `react-scripts build` 时，虽然没有安装 `react-scripts` 的全局命令，但是 `npm` 会到 `./node_modules/.bin` 中找到 `react-scripts.js` 文件作为 Node 脚本来执行，则相当于执行了 `./node_modules/.bin/react-scripts build`（最后的 `build` 作为参数传入）。
 ``` bash
@@ -60,9 +60,9 @@ npm run build
 
 我们可以在 `node_modules` 目录下，直接找到 `react-scripts` 包，查看其目录结构和 `package.json` 如下：
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51eaeb07fd50422e8d71b8b20f199844~tplv-k3u1fbpfcp-watermark.image)
+![image.png](./../assets/npm_run_3.jpg)
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e444a4dc282d456f88cf0a3c1a2f0082~tplv-k3u1fbpfcp-watermark.image)
+![image.png](./../assets/npm_run_4.jpg)
 
 从 `package.json` 中可知，这个包将 `./bin/react-scripts.js` 作为 `bin` 声明了。所以在 `npm install` 时，`npm` 读到该配置后，就将该文件软链接到 `./node_modules/.bin` 目录下，而 `npm` 还会自动把node_modules/.bin加入$PATH，这样就可以直接作为命令运行依赖程序和开发依赖程序，不用全局安装了。
 
