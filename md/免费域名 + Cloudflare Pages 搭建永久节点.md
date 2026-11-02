@@ -5,8 +5,8 @@ description: >-
   Edgetunnel2.0 全新版本部署教程：用免费域名 + Cloudflare Pages 零成本搭建永久可用的代理节点。涵盖 Pages 上传部署、ADMIN 变量、KV 绑定、自定义域名、随机优选 / 自定义优选 / 优选订阅生成器三种优选方式，以及 VLESS/Trojan 协议切换、Telegram Bot 通知、请求数统计等进阶玩法。
 tags: 'Cloudflare,网络技术,Edgetunnel'
 crtime: 1793348715122
-uptime: 1793589136317
-heroImage: ../assets/edt2/免费VPN.jpeg
+uptime: 1793591438223
+heroImage: ../assets/edt2/free-vpn-hero.png
 ---
 
 > 本文整理自 [CMLiussss Blog 的 Edgetunnel2.0 教程](https://fastly.blog.cmliussss.com/p/edt2/)，项目源码：[cmliu/edgetunnel](https://github.com/cmliu/edgetunnel)
